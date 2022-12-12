@@ -1,8 +1,7 @@
-#define ref_id 20
-
-
+#define max_referencias 500
 
 int id = 1; //id das referencias
+int ref_id = 1;
 int idautores = 1;
 int idpass = 1;
 int idpaginas = 1;
@@ -10,14 +9,15 @@ float media;
 
 typedef struct publicacoes
 {	
-	char nome;
-	char pub;
-	char autor;
+	char nome[255];
+	char pub[255];
+	int idautor;
+	char autor[255];
 	int ano;
-	char local;
+	char local[255];
 	int paginas;
-	char endereco;
-	char pass;
+	char endereco[255];
+	char pass[255];
 	int inicial;
 	int gerir;
 	int mostrar;
@@ -25,10 +25,20 @@ typedef struct publicacoes
 
 }Referencias;
 
-Referencias ref[ref_id];
+Referencias referencias[500];
 
 typedef struct autores
 {
 	int id;
-	int autores;
+	char autor[255];
 }Autores;
+
+Autores autor[50];
+
+typedef struct todaspass
+{
+	int idpass;
+	char pass[255];
+}Todaspass;
+
+Todaspass pass[50];

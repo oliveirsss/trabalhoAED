@@ -8,67 +8,75 @@ void inserir()
 
     fflush(stdin);
     printf("*    Insira nome da publicaçao:   *\n");
-    gets(ref[id].nome);
+    gets(referencias[id].nome);
     fflush(stdin);
 
     printf("*    Insira o tipo de publicaçao:     *\n");
-    gets(ref[id].pub);
+    gets(referencias[id].pub);
     fflush(stdin);
 
     printf("*    Insira o autor:       *\n");
-    gets(ref[id].autor);
+    gets(referencias[id].autor);
     fflush(stdin);
     int existe = 0;
-
+    referencias[id].idautor = idautores;
+    
     for (size_t i = 0; i <= id; i++)
     {
-        if (strcmp(ref[i].autor, ref[id].autor) == 0)
+        if (strcmp(referencias[i].autor, referencias[id].autor) == 0)
             existe = 1;
     }
 
-    if (existe == 0)
-        id_autores++;
+    if (existe == 0){
+        strcpy(autor[idautores].autor, referencias[id].autor);
+        autor[idautores].id = idautores;
+        idautores++;
+    }
 
     printf("*    Insira o ano da publicaçao:       *\n");
-    scanf("%i", &ref[id].ano);
+    scanf("%i", &referencias[id].ano);
     fflush(stdin);
 
     printf("*    Insira o local da publicaçao:            *\n");
-    gets(ref[id].local);
+    gets(referencias[id].local);
     fflush(stdin);
 
     printf("*    Insira o numero de paginas:          *\n");
-    scanf("%i", &ref[id].paginas);
+    scanf("%i", &referencias[id].paginas);
     fflush(stdin);
 
     printf("*    Insira o endereço:                *\n");
-    gets(ref[id].endereco);
+    gets(referencias[id].endereco);
     fflush(stdin);
 
     printf("*    Insira as palavras-chaves:                     *\n");
-    gets(ref[id].pass);
+    gets(referencias[id].pass);
     fflush(stdin);
 
     id++;
     idautores++;
     idpass++;
     idpaginas++;
+
+    menugerir();
 }
 
 void mostrar()
 {
     int sair;
+    int i;
 
-    for (i = 0, i < id, i++)
+	system("cls");
+    for (i = 1; i < id; i++)
     {
-        printf("Nome da publicacao: %s \n", &ref[id].nome);
-        printf("Tipo de publicacao: %s \n", &ref[id].pub);
-        printf("Nome do autor: %s \n", &ref[id].autor);
-        printf("Ano da publicaco: %i \n", &ref[id].ano);
-        printf("Local da publicacao: %s \n", &ref[id].local);
-        printf("Numero de paginas: %i \n", &ref[id].paginas);
-        printf("Endereco da publicacao: %s \n", &ref[id].endereco);
-        printf("Palavra-chave: %s \n", &ref[id].pass);
+        printf("Nome da publicacao: %s \n", referencias[i].nome);
+        printf("Tipo de publicacao: %s \n", referencias[i].pub);
+        printf("Nome do autor: %s \n", referencias[i].autor);
+        printf("Ano da publicaco: %i \n", referencias[i].ano);
+        printf("Local da publicacao: %s \n", referencias[i].local);
+        printf("Numero de paginas: %i \n", referencias[i].paginas);
+        printf("Endereco da publicacao: %s \n", referencias[i].endereco);
+        printf("Palavra-chave: %s \n", referencias[i].pass);
     }
 
     printf("\n\n\n\t\t\t\tPressione (5) para voltar: ");
@@ -82,10 +90,13 @@ void mostrar()
 
 void alterar()
 {
-    int ref_id, alteracao, cont;
+    int alteracao;
+    int cont;
+    int referencia_id;
 
+	system("cls");
     printf("\n\t\t\t\tDigite o ID da referencia que pretende alterar: ");
-    scanf("%i", &ref[id]);
+    scanf("%i", &referencia_id);
     fflush(stdin);
 
     printf("\n\t\t\t\tO que pretende alterar?");
@@ -98,151 +109,253 @@ void alterar()
     printf("\n\t\t\t\t(7) URL da publicacao");
     printf("\n\t\t\t\t(8) Palavras-chave");
     printf("\n\t\t\t\t(9) Referencia completa");
+    printf("\n\t\t\t\tEscolha uma das opcoes: ");
     scanf("%i", &alteracao);
     fflush(stdin);
 
     switch (alteracao)
     {
-    case 1:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo nome da publicacao %d: ", ref_id);
-        gets(referencia[ref_id].nome);
-        fflush(stdin);
-        break;
-    case 2:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo tipo de publicacao %d: ", ref_id);
-        gets(referencia[ref_id].pub);
-        fflush(stdin);
-        break;
-    case 3:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo nome do autor %d: ", ref_id);
-        gets(referencia[ref_id].autor);
-        fflush(stdin);
-        break;
-    case 4:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo ano de lançamento da publicacao %d: ", ref_id);
-        scanf("%d", &referencia[ref_id].ano);
-        fflush(stdin);
-        break;
-    case 5:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo local de lancamento da publicacao %d: ", ref_id);
-        gets(referencia[ref_id].local);
-        fflush(stdin);
-        break;
-    case 6:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo numero de paginas da publicacao %d: ", ref_id);
-        scanf("%d", &referencia[ref_id].paginas);
-        fflush(stdin);
-        break;
-    case 7:
-        system("cls");
-        printf("\t\t\t\tDigite o novo URL onde a publicacao %d se encontra: ", ref_id);
-        gets(referencia[ref_id].endereco);
-        fflush(stdin);
-        break;
-    case 8:
-        system("cls");
-        printf("\t\t\t\tQuatas palavras-chave quer adicionar? ");
-        scanf("%d", &cont);
-        fflush(stdin);
-
-        if (cont <= 0)
-        {
+        case 1:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo nome da publicacao %d: ", referencias[referencia_id].nome);
+            gets(referencias[referencia_id].nome);
+            fflush(stdin);
             menugerir();
-        }
-        else
-        {
-
-            for (int i = 0; i < cont; i++)
-            {
-                printf("\t\t\t\tDigite a nova %d Palavra-chave: ", i + 1);
-                gets(referencia[ref_id].pass);
-                fflush(stdin);
-            }
-        }
-        break;
-    case 9:
-        system("cls");
-        printf("\n\t\t\t\tDigite o novo nome da publicacao %d: ", ref_id);
-        gets(referencia[ref_id].nome);
-        fflush(stdin);
-
-        printf("\n\t\t\t\tDigite o novo tipo de publicacao %d: ", ref_id);
-        gets(referencia[ref_id].pub);
-        fflush(stdin);
-
-        printf("\n\t\t\t\tDigite o novo nome do autor da publicacao %d: ", ref_id);
-        gets(referencia[ref_id].autor);
-        fflush(stdin);
-
-        printf("\n\t\t\t\tDigite o novo ano de lancamento da publicacao  %d: ", ref_id);
-        scanf("%d", &referencia[ref_id].ano);
-        fflush(stdin);
-
-        printf("\n\t\t\t\tDigite o novo local de lancamento da publicacao %d: ", ref_id);
-        gets(referencia[ref_id].local);
-        fflush(stdin);
-
-        printf("\n\t\t\t\tDigite o novo numero de paginas da publicacao %d: ", ref_id);
-        scanf("%d", &referencia[ref_id].paginas);
-        fflush(stdin);
-
-        printf("\t\t\t\tDigite o novo URL onde a publicacao %d se encontra: ", ref_id);
-        gets(referencia[ref_id].endereco);
-        fflush(stdin);
-
-        printf("\t\t\t\tQuantas palavras-chve quer adicionar? ");
-        scanf("%d", &cont);
-        fflush(stdin);
-
-        if (cont <= 0)
-        {
+            break;
+        case 2:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo tipo de publicacao %d: ", referencias[referencia_id].pub);
+            gets(referencias[referencia_id].pub);
+            fflush(stdin);
             menugerir();
-        }
-        else
-        {
+            break;
+        case 3:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo nome do autor %d: ", referencias[referencia_id].autor);
+            gets(referencias[referencia_id].autor);
+            fflush(stdin);
+            menugerir();
+            break;
+        case 4:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo ano de lançamento da publicacao %d: ", referencias[referencia_id].ano);
+            scanf("%d", &referencias[referencia_id].ano);
+            fflush(stdin);
+            menugerir();
+            break;
+        case 5:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo local de lancamento da publicacao %d: ", referencias[referencia_id].local);
+            gets(referencias[referencia_id].local);
+            fflush(stdin);
+            menugerir();
+            break;
+        case 6:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo numero de paginas da publicacao %d: ", referencias[referencia_id].paginas);
+            scanf("%d", &referencias[referencia_id].paginas);
+            fflush(stdin);
+            menugerir();
+            break;
+        case 7:
+            system("cls");
+            printf("\t\t\t\tDigite o novo URL onde a publicacao %d se encontra: ", referencias[referencia_id].endereco);
+            gets(referencias[referencia_id].endereco);
+            fflush(stdin);
+            menugerir();
+            break;
+        case 8:
+            system("cls");
+            printf("\t\t\t\tQuatas palavras-chave quer adicionar? ");
+            scanf("%d", &cont);
+            fflush(stdin);
+            menugerir();
 
-            for (int i = 0; i < cont; i++)
+            if (cont <= 0)
             {
-                printf("\n\t\t\t\tDigite a %d palavra-chave: ", i + 1);
-                gets(referencia[ref_id].pass);
-                fflush(stdin);
+                menugerir();
             }
-        }
-        break;
-    default:
-        printf("\n\t\t\t\tDigite uma das opcoes!");
-        break;
+            else
+            {
+
+                for (int i = 0; i < cont; i++)
+                {
+                    printf("\t\t\t\tDigite a nova %d Palavra-chave: ", i + 1);
+                    gets(referencias[referencia_id].pass);
+                    fflush(stdin);
+            menugerir();
+                }
+            }
+            break;
+        case 9:
+            system("cls");
+            printf("\n\t\t\t\tDigite o novo nome da publicacao %d: ", ref_id);
+            gets(referencias[referencia_id].nome);
+            fflush(stdin);
+
+            printf("\n\t\t\t\tDigite o novo tipo de publicacao %d: ", ref_id);
+            gets(referencias[referencia_id].pub);
+            fflush(stdin);
+
+            printf("\n\t\t\t\tDigite o novo nome do autor da publicacao %d: ", ref_id);
+            gets(referencias[referencia_id].autor);
+            fflush(stdin);
+
+            printf("\n\t\t\t\tDigite o novo ano de lancamento da publicacao  %d: ", ref_id);
+            scanf("%d", &referencias[referencia_id].ano);
+            fflush(stdin);
+
+            printf("\n\t\t\t\tDigite o novo local de lancamento da publicacao %d: ", ref_id);
+            gets(referencias[referencia_id].local);
+            fflush(stdin);
+
+            printf("\n\t\t\t\tDigite o novo numero de paginas da publicacao %d: ", ref_id);
+            scanf("%d", &referencias[referencia_id].paginas);
+            fflush(stdin);
+
+            printf("\t\t\t\tDigite o novo URL onde a publicacao %d se encontra: ", ref_id);
+            gets(referencias[referencia_id].endereco);
+            fflush(stdin);
+
+            printf("\t\t\t\tQuantas palavras-chve quer adicionar? ");
+            scanf("%d", &cont);
+            fflush(stdin);
+
+            if (cont <= 0)
+            {
+                menugerir();
+            }
+            else
+            {
+
+                for (int i = 0; i < cont; i++)
+                {
+                    printf("\n\t\t\t\tDigite a %d palavra-chave: ", i + 1);
+                    gets(referencias[i].pass);
+                    fflush(stdin);
+                }
+            }
+            break;
+        default:
+            printf("\n\t\t\t\tDigite uma das opcoes!");
+            break;
     }
 }
 
 void eliminar()
 {
-    int ref_id;
+    int referencias[id];
 
     system("cls");
     printf("\n\n\n\t\t\t\tDigite o ID da referencia que quer eliminar: ");
-    scanf("%i", &ref_id);
+    scanf("%i", &referencias[id]);
     fflush(stdin);
 
     for (int i = ref_id; i < id - 1; i++)
     {
 
-        referencia[i] = referencia[i + 1];
+        referencias[i] = referencias[i + 1];
     }
     id--;
+    menugerir();
 }
 
 void autores()
 {
-    for (int i = 1; i <= idautores; i++)
+    for (int i = 1; i < id; i++)
     {
-
-        printf("%i", autores)
+        printf("%i", referencias[i].autor);
     }
+    system("pause");
+    menulistar();
+}
+
+void pubautor()
+{
+    char nome_autor_procurar[32]="";
+
+    printf("Digite o nome do autor do autor de pretende procurar: ");
+    scanf("%s", nome_autor_procurar);
+    fflush(stdin);
+
+    for (int i = 1; i < id; i++)
+    {
+        int comparador;
+
+        comparador = strcmp(referencias[i].autor, nome_autor_procurar);
+
+        if(comparador == 0){
+
+        printf("Nome da publicacao: %s \n", referencias[i].nome);
+        printf("Tipo de publicacao: %s \n", referencias[i].pub);
+        printf("Nome do autor: %s \n", referencias[i].autor);
+        printf("Ano da publicaco: %i \n", referencias[i].ano);
+        printf("Local da publicacao: %s \n", referencias[i].local);
+        printf("Numero de paginas: %i \n", referencias[i].paginas);
+        printf("Endereco da publicacao: %s \n", referencias[i].endereco);
+        printf("Palavra-chave: %s \n", referencias[i].pass);
+        }
+    }
+    system("pause");
+    menulistar();
+}
+
+void pubtipo()
+{
+    char publicacoes_tipo[32]="";
+
+    printf("Digite o tipo de publicacao que pretende procurar: ");
+    scanf("%s", publicacoes_tipo);
+    fflush(stdin);
+
+    for (int i = 1; i < id; i++)
+    {
+        int comparador;
+
+        comparador = strcmp(referencias[i].pub, publicacoes_tipo);
+
+        if(comparador == 0){
+
+        printf("Nome da publicacao: %s \n", referencias[i].nome);
+        printf("Tipo de publicacao: %s \n", referencias[i].pub);
+        printf("Nome do autor: %s \n", referencias[i].autor);
+        printf("Ano da publicaco: %i \n", referencias[i].ano);
+        printf("Local da publicacao: %s \n", referencias[i].local);
+        printf("Numero de paginas: %i \n", referencias[i].paginas);
+        printf("Endereco da publicacao: %s \n", referencias[i].endereco);
+        printf("Palavra-chave: %s \n", referencias[i].pass);
+        }
+    }
+    system("pause");
+    menulistar();
+}
+
+void pubpass()
+{
+    for (int i = 1; i < referencias[i].pass; i++)
+    {
+        printf("%i", referencias[i].pass);
+    }
+    system("pause");
+    menulistar();
+}
+
+void pubano()
+{
+    for (int i = 1; i < referencias[i].ano; i++)
+    {
+        printf("%i", referencias[i].ano);
+    }
+    system("pause");
+    menulistar();
+}
+
+void allpass()
+{
+    for (int i = 1; i < referencias[i].pass; i++)
+    {
+        printf("%s", referencias[i].pass);
+    }
+    system("pause");
+    menulistar();
 }

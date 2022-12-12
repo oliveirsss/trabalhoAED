@@ -1,11 +1,52 @@
+void menuPrincipal()
+{
+	int func = 0;
+	system("cls");
+
+	while(func < 1 || func > 4)
+	{
+		system("cls");	
+		printf("***********************************\n");
+		printf("* Gestao de referncias bibliograficas - MENU         *\n");
+		printf("***********************************\n");
+		printf("*  (1)-->Gerir referencias  \n");
+		printf("*  (2)-->Mostrar estatistica       \n");
+		printf("*  (3)-->Listar referencias       \n");
+		printf("*  (4)-->Sair     \n");
+
+		scanf("%d", &func);
+		system("cls");
+
+		switch(func) {
+			case 1:
+				menugerir();
+				break;
+
+			case 2:
+				menumostrar();
+				break;
+
+			case 3:
+				menulistar();
+				break;
+
+			case 4:
+				exit(1);
+				break;
+				
+			default:
+                printf("\n\n\nEscolha apenas uma das opcoes\n");
+                break;
+			}
+		}
+}
 
 void gerir()
 {
 	int inicial = 0;
 	int func;
-
-	while(func != 4){
 		
+		system("cls");
 		printf("***********************************\n");
 		printf("* Gestao de referncias bibliograficas - MENU         *\n");
 		printf("***********************************\n");
@@ -14,6 +55,7 @@ void gerir()
 		printf("*  (3)-->Listar referencias       *\n");
 		printf("*  (4)-->Sair     *\n");
 		scanf("%d", &inicial);
+		system("cls");
 
 
 		switch(inicial){
@@ -28,16 +70,20 @@ void gerir()
 				menulistar();
 				break;
 			case 4:
-				sair();
 				break;
+			default:
+                printf("\n\n\nEscolha apenas uma das opcoes\n");
+                break;
 			}
 		}
-}
+
 
 void menugerir()
 {
-	int gerir;
+	int gerir = 0;
+	char temp[20];
 
+	system("cls");
 	printf("***********************************\n");
 	printf("*      Gerir Referencias         *\n");
 	printf("***********************************\n");
@@ -47,10 +93,10 @@ void menugerir()
 	printf("*   (4) Eliminar referncias          *\n");
 	printf("*   (5) SAIR                      *\n");
 	printf("***********************************\n");
+	// scanf("%c", &temp);
 	scanf("%d", &gerir);
 
 	switch(gerir){
-
 			case 1:
 				inserir();
 				break;
@@ -64,7 +110,7 @@ void menugerir()
 				eliminar();
 				break;	
 			case 5:
-				main();
+				menuPrincipal();
 				break;
 			default:
                 printf("\n\t\tEscolha apenas uma das opcoes\n");
@@ -76,7 +122,7 @@ void menugerir()
 void menumostrar()
 {
 	int mostrar;
-	
+	system("cls");
 	printf("***********************************\n");
 	printf("*      Mostrar  Gestao de Referencias         *\n");
 	printf("***********************************\n");
@@ -92,34 +138,42 @@ void menumostrar()
 	switch(mostrar){
 			case 1:
 				printf("%i", id);
+				system("pause");
                 break;
             case 2:
 				printf("%i", idautores);
+				system("pause");
                 break;
             case 3:
 				printf("%i", idpass);
+				system("pause");
                 break;
             case 4:
-				printf("%i", idpaginas)
+				printf("%i", idpaginas);
+				system("pause");
                 break;
             case 5:
 				media = idpaginas / id;
 				printf("%f", media);
+				system("pause");
                 break;
             case 6:
-                main();
+				menuPrincipal();
                 break;
 			default:
                 printf("\n\n\nEscolha apenas uma das opcoes\n");
+				system("pause");
                 break;
 		
 	}
+	menumostrar();
 }
 
 void menulistar()
 {
 	int listar;
 
+	system("cls");
 	printf("***********************************\n");
 	printf("*       LISTAR Referencias         *\n");
 	printf("***********************************\n");
@@ -133,7 +187,7 @@ void menulistar()
 	printf("***********************************\n");
 	scanf("%i", &listar);
 
-	switch(listar)
+	switch(listar){
  			case 1:
 				autores();
                 break;
@@ -147,13 +201,16 @@ void menulistar()
 				pubpass();
                 break;
 			case 5:
-				pubano;
+				pubano();
 				break;
 			case 6:
-				allpass;
+				allpass();
 				break;
             case 7:
-                main();
+				menuPrincipal();
                 break;
-
+			default:
+                printf("\n\n\nEscolha apenas uma das opcoes\n");
+                break;
+}
 }

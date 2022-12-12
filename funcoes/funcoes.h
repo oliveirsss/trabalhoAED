@@ -1,0 +1,15 @@
+void menuPrincipal();
+void gerir();
+void menugerir();
+void menumostrar();
+void menulistar();
+void inserir();
+void mostrar();
+void alterar();
+void eliminar();
+void autores();
+void pubautor();
+void pubtipo();
+void pubpass();
+void pubano();
+void allpass();
