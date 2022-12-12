@@ -4,7 +4,7 @@ int id = 1; //id das referencias
 int ref_id = 1;
 int idautores = 1;
 int idpass = 1;
-int idpaginas = 1;
+int idpaginas = 0;
 float media;
 
 typedef struct publicacoes
