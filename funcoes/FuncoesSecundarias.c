@@ -7,11 +7,11 @@ void inserir()
     printf("***********************************\n");
 
     fflush(stdin);
-    printf("*    Insira nome da publicaçao:   *\n");
+    printf("*    Insira nome da publicacao:   *\n");
     gets(referencias[id].nome);
     fflush(stdin);
 
-    printf("*    Insira o tipo de publicaçao:     *\n");
+    printf("*    Insira o tipo de publicacao:     *\n");
     gets(referencias[id].pub);
     fflush(stdin);
 
@@ -33,11 +33,11 @@ void inserir()
         idautores++;
     }
 
-    printf("*    Insira o ano da publicaçao:       *\n");
+    printf("*    Insira o ano da publicacao:       *\n");
     scanf("%i", &referencias[id].ano);
     fflush(stdin);
 
-    printf("*    Insira o local da publicaçao:            *\n");
+    printf("*    Insira o local da publicacao:            *\n");
     gets(referencias[id].local);
     fflush(stdin);
 
@@ -45,7 +45,7 @@ void inserir()
     scanf("%i", &referencias[id].paginas);
     fflush(stdin);
 
-    printf("*    Insira o endereço:                *\n");
+    printf("*    Insira o endereco:                *\n");
     gets(referencias[id].endereco);
     fflush(stdin);
 
@@ -234,7 +234,7 @@ void autores()
 {
     for (int i = 1; i < id; i++)
     {
-        printf("\t\t %s \n", referencias[i].autor);
+        printf("%s", referencias[i].autor);
     }
     system("pause");
     menulistar();
@@ -245,7 +245,7 @@ void pubautor()
     char nome_autor_procurar[32]="";
 
     printf("Digite o nome do autor do autor de pretende procurar: ");
-    scanf("\t\t %s \n", nome_autor_procurar);
+    scanf("%s", nome_autor_procurar);
     fflush(stdin);
 
     for (int i = 1; i < id; i++)
@@ -275,7 +275,7 @@ void pubtipo()
     char publicacoes_tipo[32]="";
 
     printf("Digite o tipo de publicacao que pretende procurar: ");
-    scanf("\t\t %s \n", publicacoes_tipo);
+    scanf("%s", publicacoes_tipo);
     fflush(stdin);
 
     for (int i = 1; i < id; i++)
@@ -305,7 +305,7 @@ void pubpass()
     char publicacoes_pass[32]="";
 
     printf("Digite a palavra-chave da publicacao que pretende procurar: ");
-    scanf("\t\t %s \n", publicacoes_pass);
+    scanf("%s", publicacoes_pass);
     fflush(stdin);
 
     for (int i = 1; i < id; i++)
@@ -332,12 +332,12 @@ void pubpass()
 
 void pubano()
 {
-
     int publicacoes_ano;
 
     printf("Digite o ano da publicacao que pretende procurar: ");
-    scanf("\t\t %i \n", referencias[id].ano);
+    scanf("%i", &publicacoes_ano);
     fflush(stdin);
+    
 
     for (int i = 1; i < id; i++)
     {
@@ -361,7 +361,7 @@ void allpass()
 {
     for (int i = 1; i < id; i++)
     {
-        printf("\t\t %s \n", referencias[i].pass);
+        printf("%s", referencias[i].pass);
     }
     system("pause");
     menulistar();

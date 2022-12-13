@@ -87,12 +87,12 @@ void menumostrar()
 	printf("***********************************\n");
 	printf("*      Mostrar  Gestao de Referencias *\n");
 	printf("***********************************\n");
-	printf("*   (1) Mostrar o numero de publicaçoes *\n");
+	printf("*   (1) Mostrar o numero de publicacoes *\n");
 	printf("*   (2) Mostrar o numero de autores *\n");
 	printf("*   (3) Mostrar o numero de palavras-chave *\n");
 	printf("*   (4) Mostrar o numero de paginas na base de dados *\n");
-	printf("*   (5) Mostrar media de paginas por publicaçao *\n");
-	printf("*   (6) SAIR *\n");
+	printf("*   (5) Mostrar media de paginas por publicacao *\n");
+	printf("*   (6) Sair *\n");
 	printf("***********************************\n");
 	scanf("%i", &mostrar);
 
@@ -155,11 +155,11 @@ void menulistar()
 	printf("***********************************\n");
 	printf("*   (1) Listar autores *\n");
 	printf("*   (2) Listar publicacoes de um autor *\n");
-	printf("*   (3) Listar publicaçoes por tipo *\n");
-	printf("*   (4) Listar publicaçoes por palavras-chave  *\n");
-	printf("*   (5) Listar publicaçoes por ano  *\n");
+	printf("*   (3) Listar publicacoes por tipo *\n");
+	printf("*   (4) Listar publicacoes por palavras-chave  *\n");
+	printf("*   (5) Listar publicacoes por ano  *\n");
 	printf("*   (6) Listar todas as palavras-passes  *\n");
-    printf("*   (7) SAIR *\n");
+    printf("*   (7) Sair *\n");
 	printf("***********************************\n");
 	scanf("%i", &listar);
 
